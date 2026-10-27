@@ -4,11 +4,13 @@
  * layer 0 base : the physical QWERTY/ISO layout.
  *                [ morphs to ] when shift is held (there is no dedicated ] key).
  *                esc morphs to ` (grave) when shift is held.
- *                the rshift key is NOT shift: it sends F24, which the host keymap
- *                (~/.config/hypr/iso74-latvian.xkb) turns into a latvian accent
- *                key: tap it then a = ā, or hold it while typing = ā.
- *                capitals via lshift. no hold-tap: a shift/accent dual key had to
- *                guess from timing and misfired (fast capitals became ī).
+ *                the rshift key is NOT shift: it sends RGUI (unused otherwise),
+ *                which the host keymap (~/.config/hypr/iso74-latvian.xkb) turns
+ *                into a latvian accent key: tap it then a = ā, or hold it while
+ *                typing = ā. capitals via lshift. no hold-tap: a shift/accent
+ *                dual key guessed from timing and misfired (fast capitals = ī).
+ *                RGUI not F24: terminals encode F24 by physical key and print a
+ *                stray glyph; a modifier key press is never reported as text.
  * layer 1 fn1  : hold the fn1 key (right of RShift). F1-F12 on the number row,
  *                bluetooth select/clear + output toggle + reset + bootloader on the
  *                top row, media on the arrows (up/dn = vol, L/R = prev/next, space = play).
@@ -58,7 +60,7 @@
 				&grave_esc  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp MINUS  &kp EQUAL  &kp BSPC  &kp HOME
 				&kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &lbkt_shft  &kp DEL  &kp END
 				&kp LCTRL  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp K  &kp L  &kp SEMI  &kp SQT  &kp RET  &kp RCTRL  &kp UP
-				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp F24  &mo 1  &kp LEFT  &kp RIGHT
+				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RGUI  &mo 1  &kp LEFT  &kp RIGHT
 				&kp LGUI  &kp LALT  &kp SPACE  &kp RALT  &mo 2  &kp DOWN
 			>;
 		};
