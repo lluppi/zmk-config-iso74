@@ -46,14 +46,18 @@
 		};
 
 		/* rshift: hold = shift, tap = F24 (latvian accent latch on the host).
-		 * hold-preferred: any key pressed while it is down makes it shift,
-		 * so rolling rshift into a letter never turns into an accent.
+		 * balanced: a key pressed AND released while rshift is down = shift
+		 * (rshift+a, A). rshift released first, even if the next letter was
+		 * already down = accent (tap-roll into a, ā). hold-preferred + 200ms
+		 * was measured turning real taps into shift (taps overlapped the next
+		 * key or ran past 200ms), so the term is long: it only decides a
+		 * lone rshift press, and a lone long press has no other meaning.
 		 */
 		rshft_lv: rshft_lv {
 			compatible = "zmk,behavior-hold-tap";
 			#binding-cells = <2>;
-			flavor = "hold-preferred";
-			tapping-term-ms = <200>;
+			flavor = "balanced";
+			tapping-term-ms = <400>;
 			bindings = <&kp>, <&kp>;
 		};
 	};
