@@ -4,6 +4,9 @@
  * layer 0 base : the physical QWERTY/ISO layout.
  *                [ morphs to ] when shift is held (there is no dedicated ] key).
  *                esc morphs to ` (grave) when shift is held.
+ *                rshift: hold = shift, tap = F24. the host keymap
+ *                (~/.config/hypr/iso74-latvian.xkb) turns F24 into a one-shot
+ *                latvian accent latch: tap rshift, then a = ā.
  * layer 1 fn1  : hold the fn1 key (right of RShift). F1-F12 on the number row,
  *                bluetooth select/clear + output toggle + reset + bootloader on the
  *                top row, media on the arrows (up/dn = vol, L/R = prev/next, space = play).
@@ -41,6 +44,18 @@
 			bindings = <&kp ESC>, <&kp GRAVE>;
 			mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
+
+		/* rshift: hold = shift, tap = F24 (latvian accent latch on the host).
+		 * hold-preferred: any key pressed while it is down makes it shift,
+		 * so rolling rshift into a letter never turns into an accent.
+		 */
+		rshft_lv: rshft_lv {
+			compatible = "zmk,behavior-hold-tap";
+			#binding-cells = <2>;
+			flavor = "hold-preferred";
+			tapping-term-ms = <200>;
+			bindings = <&kp>, <&kp>;
+		};
 	};
 
 	keymap {
@@ -53,7 +68,7 @@
 				&grave_esc  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp MINUS  &kp EQUAL  &kp BSPC  &kp HOME
 				&kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &lbkt_shft  &kp DEL  &kp END
 				&kp LCTRL  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp K  &kp L  &kp SEMI  &kp SQT  &kp RET  &kp RCTRL  &kp UP
-				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT  &mo 1  &kp LEFT  &kp RIGHT
+				&kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &rshft_lv RSHFT F24  &mo 1  &kp LEFT  &kp RIGHT
 				&kp LGUI  &kp LALT  &kp SPACE  &kp RALT  &mo 2  &kp DOWN
 			>;
 		};
